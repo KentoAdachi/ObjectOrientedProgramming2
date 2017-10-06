@@ -119,7 +119,7 @@ public class Stack {
 		}
 	}
 	/**
-	 *  スタックの文字列化。
+	 *  スタックの文字列化
 	 *  @return スタックの内容をtopからbottomまで表示する
 	 *  @exception none
 	 *
