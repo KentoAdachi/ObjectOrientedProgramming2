@@ -9,6 +9,7 @@
  *   <LI> void push(Object element)
  *   <LI> Object pop()
  *  </OL>
+ *  @author 足立 賢人 BP16001
  *  @author Matsuura Saeko
  *  @version 1.0
  *
