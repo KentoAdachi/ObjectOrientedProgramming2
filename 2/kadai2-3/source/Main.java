@@ -32,7 +32,6 @@ public class Main {
 	 *
 	 *  @param word 語
 	 *  @return 語と反転語の組
-	 *
 	 */
 	static String reverse(String word) {
 		//stackの生成
