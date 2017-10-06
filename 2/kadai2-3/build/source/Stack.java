@@ -9,6 +9,7 @@
  *   <LI> void push(Object element)
  *   <LI> Object pop()
  *  </OL>
+ *  @author 足立 賢人 BP16001
  *  @author Matsuura Saeko
  *  @version 1.0
  *
@@ -118,7 +119,7 @@ public class Stack {
 		}
 	}
 	/**
-	 *  スタックの文字列化。
+	 *  スタックの文字列化
 	 *  @return スタックの内容をtopからbottomまで表示する
 	 *  @exception none
 	 *

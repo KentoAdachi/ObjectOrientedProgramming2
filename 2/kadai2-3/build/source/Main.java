@@ -9,6 +9,7 @@
  *   <LI> 語をコマンドライン引数として入力する
  *   <LI> 入力された語の数だけ「語を反転し、その結果を画面に表示する」を繰り返す
  *  </OL>
+ *  @author 足立 賢人 BP16001
  *  @author Matsuura Saeko
  *  @version 1.0
  *
@@ -31,7 +32,6 @@ public class Main {
 	 *
 	 *  @param word 語
 	 *  @return 語と反転語の組
-	 *
 	 */
 	static String reverse(String word) {
 		//stackの生成
