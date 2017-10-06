@@ -21,21 +21,10 @@ public class Main {
 			System.out.println(reverse(str));
 		}
 
-		// playground();
 
 	}
 
-	static void playground(){
-		Stack s1 = new Stack(5);
-		s1.push("a");
-		s1.push("b");
-		System.out.println(s1);
-		System.out.println(s1.pop());
-		System.out.println(s1.pop());
 
-
-		System.out.println(reverse("test"));
-	}
 
 	/**
 	 *   語を反転するメソッド
@@ -48,12 +37,11 @@ public class Main {
 		//stackの生成
 		int l = word.length();
 		Stack stack = new Stack(l);
-		//word.charAt(index)
 		//wordを一文字単位でpush
 		for (int i = 0;i < l;i++ ) {
 			stack.push(word.charAt(i));
 		}
-		// stack.show();
+
 		//stackをpopして新たな文字列に追加
 		String rev ="";
 		for (int i = 0;i < l;i++ ) {

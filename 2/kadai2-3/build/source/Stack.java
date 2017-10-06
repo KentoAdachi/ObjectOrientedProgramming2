@@ -14,7 +14,7 @@
  *
  */
 
- //default value は仮置きっぽい
+
 public class Stack {
 
 	/**
@@ -56,7 +56,7 @@ public class Stack {
 	 *
 	 */
 	public void push(Object element) {
-		// System.out.println("isfull = "+isFull());
+
 		if (isFull() == false) {
 			stack[++top] = element;
 		}
@@ -90,7 +90,7 @@ public class Stack {
 	 *
 	 */
 	boolean isEmpty() {
-		// System.out.println("top = "+ top);
+
 		return top == -1 ?true :false;
 	}
 
@@ -101,7 +101,7 @@ public class Stack {
 	 *
 	 */
 	boolean isFull() {
-		// System.out.println("top = "+top+" size = "+size);
+
 		return top == size-1? true : false;
 	}
 
@@ -110,13 +110,13 @@ public class Stack {
 	 *  @return なし
 	 *  @exception none
 	 *
+	 *  呼ばれない
 	 */
 	void show() {
 		for (int i = 0;i < size;i++) {
 			System.out.println("stack["+i+"] = "+stack[i]);
 		}
 	}
-
 	/**
 	 *  スタックの文字列化。
 	 *  @return スタックの内容をtopからbottomまで表示する
