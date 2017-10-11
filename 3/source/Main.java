@@ -5,10 +5,10 @@ import java.util.Date;
 import java.io.*;
 class Main {
 
-    //さすがにでかいのでやることをまとめる
+    //残りやること
     /*
-    書き換えるべき部分の書き換え
     コード整形
+    コメント
     */
 
     public static void main(String[] args) {
