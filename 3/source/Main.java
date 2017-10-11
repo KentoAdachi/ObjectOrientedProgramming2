@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.Queue;
 import java.util.ArrayDeque;
+import java.util.Date;
 import java.io.*;
 class Main {
 
@@ -8,16 +9,18 @@ class Main {
 /*
 現在,課題１のソースを課題３に対応した形式に書き換えている
 疑問点は,捜査して初めてわかるディレクトリ数をどうして得ているのか
-->f<dir>.listFiles().lengthとでもしていると予想
-タイムスタンプの戻り値を適切な形式に変換する
+->f<dir>.listFiles().lengthとでもしていると予想<-解決
+タイムスタンプの戻り値を適切な形式に変換する<-解決
 ファイルへの書き出し処理を行う
 
 
 */
 
     public static void main(String[] args) {
+
+
+
         //get root dir
-        File dirlist[];
         File dir = new File("../resource");//あとで書き換える
         Queue<File> queue = new ArrayDeque<File>();
         queue.add(dir);
@@ -38,9 +41,10 @@ class Main {
 
 
                 //get dir info
-                dirlist = dir.listFiles();
-                int fileamount = dirlist.length;
-                System.out.println("             "+fileamount);
+
+                File dirlist[] = dir.listFiles();
+
+                System.out.println("             "+dirlist.length);
                 for (File f :dirlist ) {
                     if (f.isDirectory()) {
                         // fw.write("            "+f.getName()+"はディレクトリ\n");
@@ -60,7 +64,7 @@ class Main {
                         //サイズ
                         System.out.println("                "+f.length());
                         //タイムスタンプ
-                        System.out.println("                "+f.lastModified());
+                        System.out.println("                "+new Date(f.lastModified()));
                     }
                 }
 
