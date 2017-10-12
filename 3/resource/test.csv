@@ -1,0 +1,17 @@
+D,resource,5
+F,.DS_Store,/Users/kent/obj2/3/build/class/../../resource/.DS_Store,6148,Tue Oct 10 17:30:11 JST 2017
+D,dir2,3
+D,dir3,4
+F,test.csv,/Users/kent/obj2/3/build/class/../../resource/test.csv,0,Thu Oct 12 13:01:42 JST 2017
+F,test.txt,/Users/kent/obj2/3/build/class/../../resource/test.txt,363,Thu Oct 12 13:01:31 JST 2017
+D,dir2,3
+F,.DS_Store,/Users/kent/obj2/3/build/class/../../resource/dir2/.DS_Store,6148,Tue Oct 10 17:29:46 JST 2017
+F,file1,/Users/kent/obj2/3/build/class/../../resource/dir2/file1,4,Tue Oct 10 17:21:41 JST 2017
+F,file2,/Users/kent/obj2/3/build/class/../../resource/dir2/file2,4,Tue Oct 10 17:21:41 JST 2017
+D,dir3,4
+F,.DS_Store,/Users/kent/obj2/3/build/class/../../resource/dir3/.DS_Store,6148,Tue Oct 10 17:30:34 JST 2017
+D,dir4,1
+F,file3,/Users/kent/obj2/3/build/class/../../resource/dir3/file3,4,Tue Oct 10 17:21:41 JST 2017
+F,file4,/Users/kent/obj2/3/build/class/../../resource/dir3/file4,7,Tue Oct 10 17:30:39 JST 2017
+D,dir4,1
+F,file5,/Users/kent/obj2/3/build/class/../../resource/dir3/dir4/file5,4,Tue Oct 10 17:21:41 JST 2017
