@@ -5,10 +5,10 @@ import java.util.Date;
 import java.io.*;
 class Main {
 
-    //さすがにでかいのでやることをまとめる
+    //残りやること
     /*
-    書き換えるべき部分の書き換え
     コード整形
+    コメント
     */
 
     public static void main(String[] args) {
@@ -39,36 +39,36 @@ class Main {
                 File dirlist[] = dir.listFiles();
                 //get current dir name
 
-                // fw.write("Directory : "+dir.getName()+"\n");
+                fw.write("Directory : "+dir.getName()+"\n");
                 System.out.println("Directory : "+dir.getName());
-                fw.write("D,"+dir.getName()+","+dirlist.length+"\n");
+                //fw.write("D,"+dir.getName()+","+dirlist.length+"\n");
 
                 //get dir info
 
                 System.out.println("             "+dirlist.length);
                 for (File f :dirlist ) {
                     if (f.isDirectory()) {
-                        // fw.write("            "+f.getName()+"はディレクトリ\n");
+                        fw.write("            "+f.getName()+"はディレクトリ\n");
                         System.out.println("            "+f.getName()+"はディレクトリ");
 
                         System.out.println("                "+f.listFiles().length);
-                        fw.write("D,"+f.getName()+","+f.listFiles().length+"\n");
+                        // fw.write("D,"+f.getName()+","+f.listFiles().length+"\n");
 
                         //push found dir
                         queue.add(f);
                     }else{
-                        // fw.write("            "+f.getName()+"\n");
+                         fw.write("            "+f.getName()+"\n");
 
                         //ファイル名
-                        System.out.println("            "+f.getName());
+                        // System.out.println("            "+f.getName());
                         //絶対パス
-                        System.out.println("                "+f.getAbsolutePath());
+                        // System.out.println("                "+f.getAbsolutePath());
                         //サイズ
-                        System.out.println("                "+f.length());
+                        // System.out.println("                "+f.length());
                         //タイムスタンプ
-                        System.out.println("                "+new Date(f.lastModified()));
+                        // System.out.println("                "+new Date(f.lastModified()));
 
-                        fw.write("F,"+f.getName()+","+f.getAbsolutePath()+","+f.length()+","+new Date(f.lastModified())+"\n");
+                        // fw.write("F,"+f.getName()+","+f.getAbsolutePath()+","+f.length()+","+new Date(f.lastModified())+"\n");
                     }
                 }
 

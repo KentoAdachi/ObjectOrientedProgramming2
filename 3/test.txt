@@ -1,0 +1,61 @@
+Directory : ..
+            .DS_Store
+            20171010Lecture.pdf
+            buildはディレクトリ
+            kougiはディレクトリ
+            resourceはディレクトリ
+            sourceはディレクトリ
+            test.txt
+Directory : build
+            .DS_Store
+            classはディレクトリ
+            docsはディレクトリ
+            sourceはディレクトリ
+Directory : kougi
+Directory : resource
+            .DS_Store
+            dir2はディレクトリ
+            dir3はディレクトリ
+Directory : source
+            .DS_Store
+            FileTest.java
+            Main.java
+            Main2.java
+Directory : class
+            .DS_Store
+            FileTest.class
+            Main.class
+            Main2.class
+Directory : docs
+            allclasses-frame.html
+            allclasses-noframe.html
+            constant-values.html
+            deprecated-list.html
+            FileTest.html
+            help-doc.html
+            index-all.html
+            index.html
+            Main.html
+            Main2.html
+            overview-tree.html
+            package-frame.html
+            package-list
+            package-summary.html
+            package-tree.html
+            script.js
+            stylesheet.css
+Directory : source
+            FileTest.java
+            Main.java
+            Main2.java
+Directory : dir2
+            .DS_Store
+            file1
+            file2
+Directory : dir3
+            .DS_Store
+            dir4はディレクトリ
+            file3
+            file4
+Directory : dir4
+            file5
