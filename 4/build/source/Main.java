@@ -1,36 +1,32 @@
+/*
+プログラッミング演習II
+第3回課題
+BP16001 足立賢人
+2017/10/14
+
+*/
 import java.io.File;
 import java.util.Queue;
 import java.util.ArrayDeque;
-import java.util.Date;
+// import java.util.Date;
 import java.io.*;
-class Main2 {
-
-    //残りやること
-    /*
-    コード整形
-    コメント
-    */
+class Main {
 
     public static void main(String[] args) {
 
-
-
         //get root dir
-        // File dir = new File(args[0]);
-        File dir = new File("../");
+        File dir = new File(args[0]);
         Queue<File> queue = new ArrayDeque<File>();
         queue.add(dir);
 
         try {
+
             //prepare writting
-
-            // String filename = args[0]+args[1];
-            String filename = "test.csv";
+            String filename = args[0]+args[1];
             //args[0]のパス末尾に'/'をつける人とつけない人がいる
-            // if (args[0].charAt(args[0].length()-1) != '/') {
-            //     filename = args[0]+"/"+args[1];
-            // }
-
+            if (args[0].charAt(args[0].length()-1) != '/') {
+                filename = args[0]+"/"+args[1];
+            }
             File log = new File(filename);
             FileWriter fw = new FileWriter(log);
 
@@ -39,39 +35,39 @@ class Main2 {
             //pop queue
             while((dir = queue.poll()) != null){
 
+                //get current dir info
                 File dirlist[] = dir.listFiles();
-                //get current dir name
 
-                // fw.write("Directory : "+dir.getName()+"\n");
+                fw.write("Directory : "+dir.getName()+"\n");
                 System.out.println("Directory : "+dir.getName());
-                fw.write("D,"+dir.getName()+","+dirlist.length+"\n");
+                //fw.write("D,"+dir.getName()+","+dirlist.length+"\n");
 
                 //get dir info
 
                 System.out.println("             "+dirlist.length);
                 for (File f :dirlist ) {
                     if (f.isDirectory()) {
-                        // fw.write("            "+f.getName()+"はディレクトリ\n");
+                        fw.write("            "+f.getName()+"はディレクトリ\n");
                         System.out.println("            "+f.getName()+"はディレクトリ");
 
                         System.out.println("                "+f.listFiles().length);
-                        fw.write("D,"+f.getName()+","+f.listFiles().length+"\n");
+                        // fw.write("D,"+f.getName()+","+f.listFiles().length+"\n");
 
                         //push found dir
                         queue.add(f);
                     }else{
-                        //  fw.write("            "+f.getName()+"\n");
+                         fw.write("            "+f.getName()+"\n");
 
                         //ファイル名
                         System.out.println("            "+f.getName());
                         //絶対パス
-                        System.out.println("                "+f.getAbsolutePath());
+                        // System.out.println("                "+f.getAbsolutePath());
                         //サイズ
-                        System.out.println("                "+f.length());
+                        // System.out.println("                "+f.length());
                         //タイムスタンプ
-                        System.out.println("                "+new Date(f.lastModified()));
+                        // System.out.println("                "+new Date(f.lastModified()));
 
-                        fw.write("F,"+f.getName()+","+f.getAbsolutePath()+","+f.length()+","+new Date(f.lastModified())+"\n");
+                        // fw.write("F,"+f.getName()+","+f.getAbsolutePath()+","+f.length()+","+new Date(f.lastModified())+"\n");
                     }
                 }
 
@@ -82,13 +78,7 @@ class Main2 {
 
         }
 
-
-        //break if queue empty
-
         //done
-
-
-
 
     }
 
