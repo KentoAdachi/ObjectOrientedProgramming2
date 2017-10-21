@@ -1,0 +1,17 @@
+Directory : resource
+            .DS_Store
+            dir2 はディレクトリです。
+            dir3 はディレクトリです。
+            test.csv
+            test.txt
+Directory : dir2
+            .DS_Store
+            file1
+            file2
+Directory : dir3
+            .DS_Store
+            dir4 はディレクトリです。
+            file3
+            file4
+Directory : dir4
+            file5

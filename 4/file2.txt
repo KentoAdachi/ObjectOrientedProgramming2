@@ -1,0 +1,18 @@
+Directory : resource
+            .DS_Store
+            dir2はディレクトリ
+            dir3はディレクトリ
+            file2.txt
+            test.csv
+            test.txt
+Directory : dir2
+            .DS_Store
+            file1
+            file2
+Directory : dir3
+            .DS_Store
+            dir4はディレクトリ
+            file3
+            file4
+Directory : dir4
+            file5

@@ -1,19 +1,18 @@
+/*
+オブジェクト指向プログラミングII
+第3回課題
+BP16001 足立賢人
+2017/10/14
+
+*/
 import java.io.File;
 import java.util.Queue;
 import java.util.ArrayDeque;
-import java.util.Date;
+// import java.util.Date;
 import java.io.*;
 class Main {
 
-    //残りやること
-    /*
-    コード整形
-    コメント
-    */
-
     public static void main(String[] args) {
-
-
 
         //get root dir
         File dir = new File(args[0]);
@@ -21,8 +20,8 @@ class Main {
         queue.add(dir);
 
         try {
-            //prepare writting
 
+            //prepare writting
             String filename = args[0]+args[1];
             //args[0]のパス末尾に'/'をつける人とつけない人がいる
             if (args[0].charAt(args[0].length()-1) != '/') {
@@ -36,8 +35,8 @@ class Main {
             //pop queue
             while((dir = queue.poll()) != null){
 
+                //get current dir info
                 File dirlist[] = dir.listFiles();
-                //get current dir name
 
                 fw.write("Directory : "+dir.getName()+"\n");
                 System.out.println("Directory : "+dir.getName());
@@ -60,7 +59,7 @@ class Main {
                          fw.write("            "+f.getName()+"\n");
 
                         //ファイル名
-                        // System.out.println("            "+f.getName());
+                        System.out.println("            "+f.getName());
                         //絶対パス
                         // System.out.println("                "+f.getAbsolutePath());
                         //サイズ
@@ -79,13 +78,7 @@ class Main {
 
         }
 
-
-        //break if queue empty
-
         //done
-
-
-
 
     }
 
