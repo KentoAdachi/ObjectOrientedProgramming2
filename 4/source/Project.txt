@@ -7,7 +7,7 @@
 
 設計案
 開発するモジュールは以下の通りとする
-    CORE : 課題1.2両方で使う共通クラス    BreadthFirstSearchCore.java の作成
+
     TXT : 課題1で使うクラス   BreadthFirstSearchTxt.java の作成
     CSV : 課題2で使うクラス   BreadthFirstSearchCsv.java の作成
 
@@ -20,12 +20,11 @@
 
 工期
 開発に必要な工期を以下の通りとする
-    CORE : 1日
+
     TXT : 半日
     CSV : 半日
 
-CORE
-    課題共通の部分,幅優先探索と探索情報の取得を行う
+
 TXT
     課題1部分,COREを継承し結果を出力する
 CSV
