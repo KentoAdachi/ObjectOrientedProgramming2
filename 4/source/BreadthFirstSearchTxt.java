@@ -4,12 +4,22 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+/**
+ *	幅優先探索によって指定ディレクトリ以下の階層構造をファイルに出力する
+ *	出力形式はcsv
+ *	出力先は指定ディレクトリ
+ *	 @author BP16001 足立 賢人
+ */
 public class BreadthFirstSearchTxt implements BreadthFirstSearch{
 
 	static final String OutOfBoundsMessage = "[usage] 変数1=出力先パス 変数2=出力ファイル名\n[example] java BreadthFirstSearchTxt(Csv) ../../ test.txt(or test.csv)";
 	static final String IOMessage = "ファイルの処理が正常に終了しませんでした";
+	/**
+	 * 幅優先探索によって指定ディレクトリ以下の階層構造をファイルに出力する
+	 * 出力形式はtxt
+	 * @param args コマンドライン引数
+	 */
 	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
 		BreadthFirstSearchTxt s = new BreadthFirstSearchTxt();
 		try {
 		s.makeFile(s,args);
@@ -20,22 +30,24 @@ public class BreadthFirstSearchTxt implements BreadthFirstSearch{
 
 	@Override
 	public String getCurrentDirInfo(File f) {
-		// TODO 自動生成されたメソッド・スタブ
 		return "Directory : "+f.getName()+"\n";
 	}
 
 	@Override
 	public String getChildDirInfo(File f) {
-		// TODO 自動生成されたメソッド・スタブ
         return "            "+f.getName()+"はディレクトリ\n";
 	}
 
 	@Override
 	public String getChildFileInfo(File f) {
-		// TODO 自動生成されたメソッド・スタブ
 		return "            "+f.getName()+"\n";
 	}
 
+	/**
+	 * 幅優先探索とファイルの生成を行う
+	 * @param s BreadthFirstSearchクラスのインターフェースを実装したクラスを与える
+	 * @param args コマンドライン引数を与える
+	 */
 	void makeFile(BreadthFirstSearch s,String[] args) {
         File dir = new File(args[0]);
         Queue<File> queue = new ArrayDeque<File>();
