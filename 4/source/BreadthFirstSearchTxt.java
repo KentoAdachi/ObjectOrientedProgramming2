@@ -1,34 +1,42 @@
-/*
-プログラッミング演習II
-第4回課題
-BP16001 足立賢人
-2017/10/14
-
-*/
 import java.io.File;
-import java.util.Queue;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayDeque;
-// import java.util.Date;
-import java.io.*;
+import java.util.Queue;
 
+public class BreadthFirstSearchTxt implements BreadthFirstSearch{
 
-class BreadthFirstSearchTxt {
+	static final String OutOfBoundsMessage = "[usage] 変数1=出力先パス 変数2=出力ファイル名\n[example] java BreadthFirstSearchTxt(Csv) ../../ test.txt(or test.csv)";
+	static final String IOMessage = "ファイルの処理が正常に終了しませんでした";
+	public static void main(String[] args) {
+		// TODO 自動生成されたメソッド・スタブ
+		BreadthFirstSearchTxt s = new BreadthFirstSearchTxt();
+		try {
+		s.makeFile(s,args);
+		}catch(ArrayIndexOutOfBoundsException e){
+        	System.out.println(OutOfBoundsMessage);
+		}
+	}
 
-    static String getCuurentDirInfo(File dir){
-        return "Directory : "+dir.getName()+"\n";
-    }
+	@Override
+	public String getCurrentDirInfo(File f) {
+		// TODO 自動生成されたメソッド・スタブ
+		return "Directory : "+f.getName()+"\n";
+	}
 
-    static String getChildDirInfo(File f){
+	@Override
+	public String getChildDirInfo(File f) {
+		// TODO 自動生成されたメソッド・スタブ
         return "            "+f.getName()+"はディレクトリ\n";
-    }
+	}
 
-    static String getChildFileInfo(File f){
-        return "            "+f.getName()+"\n";
-    }
+	@Override
+	public String getChildFileInfo(File f) {
+		// TODO 自動生成されたメソッド・スタブ
+		return "            "+f.getName()+"\n";
+	}
 
-
-    public static void main(String[] args) {
-        //get root dir
+	void makeFile(BreadthFirstSearch s,String[] args) {
         File dir = new File(args[0]);
         Queue<File> queue = new ArrayDeque<File>();
         queue.add(dir);
@@ -51,7 +59,7 @@ class BreadthFirstSearchTxt {
 
                 //get current dir info
                 File dirlist[] = dir.listFiles();
-                fw.write(getCuurentDirInfo(dir));
+                fw.write(getCurrentDirInfo(dir));
 
                 //get dir info
 
@@ -67,12 +75,13 @@ class BreadthFirstSearchTxt {
                 }
             }
             fw.close();
-        }catch (Exception e) {
-
+            System.out.println("ファイルを出力しました");
+        }catch (ArrayIndexOutOfBoundsException e) {
+        	System.out.println(OutOfBoundsMessage);
+        }catch(IOException e) {
+        	System.out.println(IOMessage);
+        }finally {
+        	System.out.println("終了します");
         }
-
-        //done
-
-    }
-
+	}
 }
