@@ -10,7 +10,9 @@ import java.util.Queue;
 import java.util.ArrayDeque;
 // import java.util.Date;
 import java.io.*;
-class BreadthFirstSearchCore {
+
+
+class BreadthFirstSearchTxt {
 
     static String getCuurentDirInfo(File dir){
         return "Directory : "+dir.getName()+"\n";
@@ -26,7 +28,6 @@ class BreadthFirstSearchCore {
 
 
     public static void main(String[] args) {
-
         //get root dir
         File dir = new File(args[0]);
         Queue<File> queue = new ArrayDeque<File>();
@@ -50,42 +51,21 @@ class BreadthFirstSearchCore {
 
                 //get current dir info
                 File dirlist[] = dir.listFiles();
-
                 fw.write(getCuurentDirInfo(dir));
-                System.out.println("Directory : "+dir.getName());
-                //fw.write("D,"+dir.getName()+","+dirlist.length+"\n");
 
                 //get dir info
 
-                System.out.println("             "+dirlist.length);
+
                 for (File f :dirlist ) {
                     if (f.isDirectory()) {
                         fw.write(getChildDirInfo(f));
-                        System.out.println("            "+f.getName()+"はディレクトリ");
-
-                        System.out.println("                "+f.listFiles().length);
-                        // fw.write("D,"+f.getName()+","+f.listFiles().length+"\n");
-
-                        //push found dir
+                        //push dir found
                         queue.add(f);
                     }else{
                          fw.write(getChildFileInfo(f));
-
-                        //ファイル名
-                        System.out.println("            "+f.getName());
-                        //絶対パス
-                        // System.out.println("                "+f.getAbsolutePath());
-                        //サイズ
-                        // System.out.println("                "+f.length());
-                        //タイムスタンプ
-                        // System.out.println("                "+new Date(f.lastModified()));
-
-                        // fw.write("F,"+f.getName()+","+f.getAbsolutePath()+","+f.length()+","+new Date(f.lastModified())+"\n");
                     }
                 }
-
             }
-
             fw.close();
         }catch (Exception e) {
 
