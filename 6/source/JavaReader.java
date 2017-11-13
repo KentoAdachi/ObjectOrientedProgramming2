@@ -6,17 +6,15 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** Symple note for myself
+
+
+/** Javaãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡æ³•è§£æã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
+ * Javaãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å–ã‚Š,æ–‡(statement)ã®åˆ†é¡ã‚’è¡Œã†ãŸã‚ã®æ©Ÿèƒ½ã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹ã€‚
  *
- * Javaƒtƒ@ƒCƒ‹‚Ì•¶–@\‘¢‚ğ–¾‚ç‚©‚É‚·‚é
- * ŠÖ”‚²‚Æ‚Éˆ—‚·‚é‚æ‚èˆêŠ‡‚Åˆ—‚µ‚½•û‚ª‚‘¬‚Å‚Í
- * matcherg‚Á‚Ä‚İ‚é‚Ì‚ª³U–@‚Å‚Í
- * ˆ—‚Ì‹æØ‚è‚ğ‰üs‚Å‚È‚­ƒZƒ~ƒRƒƒ“‚É‚µ‚½•û‚ª‚æ‚¢‚Ì‚Å‚Í
- * lineNumberReader‚ğg‚Á‚Ä‚İ‚Ä‚Í
- * ‚¸‚Á‚Æv‚Á‚Ä‚½‚ñ‚¾‚¯‚Ç“à•”‚©‚ç‚µ‚©ƒAƒNƒZƒX‚µ‚È‚¢getter/setter‚Á‚Äpublic‚Å‚ ‚é•K—v‚ ‚é‚Ì
- * StatementƒNƒ‰ƒX‚ğì‚Á‚Ä©•ª‚Å”»’f‚µ‚Ä‚à‚ç‚¤‚Ì–Ê”’‚¢?
- * @author bp16001
- *
+ * èª²é¡Œç•ªå· : èª²é¡Œ2
+ * æ—¥ä»˜ : 2017-11-14
+ * @author BP16001 è¶³ç«‹è³¢äºº
+ * @version 1.0 ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ãŸå®£è¨€ã«æœªå¯¾å¿œ
  */
 public class JavaReader {
 
@@ -27,6 +25,11 @@ public class JavaReader {
 	ArrayList<String> classNameListImported;
 	ArrayList<String> packageNameList;
 
+	/** èª­ã¿è¾¼ã¿å…ƒã®Fileã‚’æŒ‡å®šã—ã¦ã€æ–°è¦JavaReaderã‚’ä½œæˆã™ã‚‹ã€‚
+	 *
+	 * @param file èª­ã¿è¾¼ã¿å…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«
+	 * @throws IOException ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„ã‹ã€é€šå¸¸ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ãªããƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã‚ã‚‹ã‹ã€ã¾ãŸã¯ä½•ã‚‰ã‹ã®ç†ç”±ã§é–‹ãã“ã¨ãŒã§ããªã„å ´åˆã€‚
+	 */
 	JavaReader(File file) throws IOException {
 		setFile(file);
 		setFileReader(new FileReader(file));
@@ -37,19 +40,25 @@ public class JavaReader {
 		analyze();
 	}
 
+	/**ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å–ã‚Šã€ãã®åˆ†é¡ã‚’è¡Œã†ã€‚
+	 * @throws IOException readStatement
+	 */
 	void analyze() throws IOException {
 		String statement;
-		while((statement = readStatement()) != null) {
+		while ((statement = readStatement()) != null) {
 			classifyStatement(statement);
 		}
 
 	}
 
 	//set field
+	/**æ­£è¦è¡¨ç¾ã‚’ä½¿ã„æ–‡ã‚’ã‚¯ãƒ©ã‚¹å®£è¨€ã€ã‚¤ãƒ³ãƒãƒ¼ãƒˆå®£è¨€ã€ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸å®£è¨€ã€ãã®ä»–ã®ã„ãšã‚Œã‹ã«åˆ†é¡ã—ã€ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹ã€‚
+	 * @param statement æ–‡
+	 */
 	void classifyStatement(String statement) {
-		//ƒpƒ^[ƒ“’è‹`
-		//“r’†‰üs‚Æ‚©"class"‚ğŠÜ‚Ş•¶š—ñ‚É‘Î‰‚·‚é‚½‚ß‚É³‹K•\Œ»‚ªg‚¢‚½‚©‚Á‚½‚Ì‚Å‚·
-		//‚Ü‚ ƒRƒƒ“ƒgƒAƒEƒg‚µ‚½éŒ¾‚ğ‘z’è‚µ‚Ä‚È‚¢‚¯‚Çƒl
+		//ãƒ‘ã‚¿ãƒ¼ãƒ³å®šç¾©
+		//é€”ä¸­æ”¹è¡Œã¨ã‹"class"ã‚’å«ã‚€æ–‡å­—åˆ—ã«å¯¾å¿œã™ã‚‹ãŸã‚ã«æ­£è¦è¡¨ç¾ãŒä½¿ã„ãŸã‹ã£ãŸã®ã§ã™
+		//ã¾ã‚ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã—ãŸå®£è¨€ã‚’æƒ³å®šã—ã¦ãªã„ã‘ã©ãƒ
 		String classNameReg = "class\\s+([a-zA-Z0-9]+)";
 		String classNameImportedReg = "import\\s+([a-zA-Z0-9\\.]+)";
 		String packageNameListReg = "package\\s+([a-zA-Z0-9]+)";
@@ -60,32 +69,45 @@ public class JavaReader {
 
 	}
 
-	void matchPatternAddList(String regex,String input,ArrayList<String> list ) {
+
+	/**ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒãƒƒãƒãƒ³ã‚°ã‚’è¡Œã„ã€ãƒãƒƒãƒãƒ³ã‚°ã«æˆåŠŸã—ãŸå…¥åŠ›ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
+	 * @param regex æ­£è¦è¡¨ç¾ãƒ‘ã‚¿ãƒ¼ãƒ³
+	 * @param input å…¥åŠ›
+	 * @param list å…¥åŠ›å…ˆãƒªã‚¹ãƒˆ
+	 */
+	void matchPatternAddList(String regex, String input, ArrayList<String> list) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
 		if (matcher.find()) {
-//			System.out.println("Name : " + matcher.group(1));
+			//			System.out.println("Name : " + matcher.group(1));
 			list.add(matcher.group(1));
 		}
 	}
 
+	/**javaReaderã®çµ‚äº†å‡¦ç†ã‚’è¡Œã†
+	 * @throws IOException æ­£å¸¸ã«çµ‚äº†ã§ããªã‹ã£ãŸå ´åˆ
+	 */
 	public void close() throws IOException {
-		//ˆêà‚É‚æ‚é‚ÆfileReader‚ÍlineNumberReader‚ªŠù‚É•Â‚¶‚Ä‚­‚ê‚Ä‚é‚Æ‚©
+		//fileReaderã¯lineNumberReaderãŒæ—¢ã«é–‰ã˜ã¦ãã‚Œã¦ã‚‹ã¨ã‹
 		lineNumberReader.close();
 		//		fileReader.close();
 	}
 
-	//ƒvƒƒOƒ‰ƒ€1•¶(ƒZƒ~ƒRƒƒ“‹æØ‚è)‚ğ“Ç‚İ‚Ş
-	//‘z’è‚³‚ê‚é–ß‚è’l : "[ƒRƒƒ“ƒg][ƒAƒNƒZƒXCüq][class‚âpackage,importéŒ¾•”];"
-	//‚±‚ê‚ç‚ª‰üs‚â‹ó”’•¶š‚Å‹æØ‚ç‚ê‚Ä‚¢‚é
+	//ãƒ—ãƒ­ã‚°ãƒ©ãƒ 1æ–‡(ã‚»ãƒŸã‚³ãƒ­ãƒ³åŒºåˆ‡ã‚Š)ã‚’èª­ã¿è¾¼ã‚€
+	//æƒ³å®šã•ã‚Œã‚‹æˆ»ã‚Šå€¤ : "[ã‚³ãƒ¡ãƒ³ãƒˆ][ã‚¢ã‚¯ã‚»ã‚¹ä¿®é£¾å­][classã‚„package,importå®£è¨€éƒ¨];"
+	/**ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ 1æ–‡ã‚’èª­ã¿è¾¼ã‚€ã€‚
+	 * 1æ–‡ã®çµ‚ç«¯ã¯ã‚»ãƒŸã‚³ãƒ­ãƒ³(';')ã‹ä¸­æ‹¬å¼§('{','}')ã®ã„ãšã‚Œã‹ã§èªè­˜ã•ã‚Œã‚‹ã€‚
+	 * @return ãƒ—ãƒ­ã‚°ãƒ©ãƒ 1æ–‡
+	 * @throws IOException lineNumberReader.read
+	 */
 	String readStatement() throws IOException {
 
-		//		“ª‚Ì‹ó”’•¶š‚ğ–³‹‚µ‚Ä“Ç‚İ‚Ş
-		//		“Ç‚İ‚ñ‚¾‚à‚Ì‚ğ‚½‚ß‚é
+		//		é ­ã®ç©ºç™½æ–‡å­—ã‚’ç„¡è¦–ã—ã¦èª­ã¿è¾¼ã‚€
+		//		èª­ã¿è¾¼ã‚“ã ã‚‚ã®ã‚’ãŸã‚ã‚‹
 		int c;
 		StringBuilder stringBuilder = new StringBuilder();
 
-		//Å‰‚Ì‹ó”’‚â…•½ƒ^ƒu,ƒRƒƒ“ƒg‚à–³‹‚µ‚½‚¢(³‹K‰»)
+		//æœ€åˆã®ç©ºç™½ã‚„æ°´å¹³ã‚¿ãƒ–,ã‚³ãƒ¡ãƒ³ãƒˆã‚‚ç„¡è¦–ã—ãŸã„(æ­£è¦åŒ–)
 
 		while ((c = lineNumberReader.read()) != -1) {
 			//System.out.print((char)c);
@@ -106,19 +128,19 @@ public class JavaReader {
 	 * getter/setter *
 	 *---------------*/
 
-	//ƒtƒ@ƒCƒ‹‚Ìâ‘ÎƒpƒX
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ¶å¯¾ãƒ‘ã‚¹
 	//getAbsolutePath()
 	String getAbsolutePath() {
 		return file.getAbsolutePath();
 	}
 
-	//ƒtƒ@ƒCƒ‹–¼
+	//ãƒ•ã‚¡ã‚¤ãƒ«å
 	//getName()
 	String getName() {
 		return file.getName();
 	}
 
-	//©“®¶¬‚±‚±‚©‚ç
+	//è‡ªå‹•ç”Ÿæˆã“ã“ã‹ã‚‰
 
 	public File getFile() {
 		return file;
@@ -148,14 +170,14 @@ public class JavaReader {
 		return classNameList;
 	}
 
-	//ƒtƒ@ƒCƒ‹‚ÉŠÜ‚Ü‚ê‚éƒNƒ‰ƒX–¼(•¡”‚ ‚é‚©‚à‚µ‚ê‚È‚¢)
-	//"class"‚ÌoŒ»•”•ª
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã«å«ã¾ã‚Œã‚‹ã‚¯ãƒ©ã‚¹å(è¤‡æ•°ã‚ã‚‹ã‹ã‚‚ã—ã‚Œãªã„)
+	//"class"ã®å‡ºç¾éƒ¨åˆ†
 	public void setClassNameList(ArrayList<String> classNameList) {
 		this.classNameList = classNameList;
 	}
 
-	//ƒtƒ@ƒCƒ‹‚ÉŠÜ‚Ü‚ê‚éimportƒNƒ‰ƒX–¼
-	//"import"‚ÌoŒ»•”•ª
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã«å«ã¾ã‚Œã‚‹importã‚¯ãƒ©ã‚¹å
+	//"import"ã®å‡ºç¾éƒ¨åˆ†
 	public ArrayList<String> getClassNameListImported() {
 		return classNameListImported;
 	}
@@ -164,9 +186,9 @@ public class JavaReader {
 		this.classNameListImported = classNameListImported;
 	}
 
-	//ƒtƒ@ƒCƒ‹‚ÉŠÜ‚Ü‚ê‚éƒpƒbƒP[ƒWéŒ¾
-	//"package"‚ÌoŒ»•”•ª
-	//oŒ»•”•ª‚ğŠÜ‚Şs
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã«å«ã¾ã‚Œã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸å®£è¨€
+	//"package"ã®å‡ºç¾éƒ¨åˆ†
+	//å‡ºç¾éƒ¨åˆ†ã‚’å«ã‚€è¡Œ
 	public ArrayList<String> getPackageNameList() {
 		return packageNameList;
 	}
@@ -175,13 +197,12 @@ public class JavaReader {
 		this.packageNameList = packageNameList;
 	}
 
-	//ƒtƒ@ƒCƒ‹‚Ìs”
-	//"\n"‚ÌoŒ»‰ñ”
-	//readLine‚ÌÀs‰ñ”
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œæ•°
+	//"\n"ã®å‡ºç¾å›æ•°
+	//readLineã®å®Ÿè¡Œå›æ•°
 	int getLineNumber() {
 		return getLineNumberReader().getLineNumber();
 	}
 
-
-	//©“®¶¬‚±‚±‚Ü‚Å
+	//è‡ªå‹•ç”Ÿæˆã“ã“ã¾ã§
 }

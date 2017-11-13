@@ -3,45 +3,47 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 /**
- * •—Dæ’Tõ
- * 
- * @author bp16001
- * 
+ * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å¹…å„ªå…ˆæ¢ç´¢ã‚’ã‚µãƒãƒ¼ãƒˆã™ã‚‹ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚¯ãƒ©ã‚¹ã€‚
+ *
+ * èª²é¡Œç•ªå· : èª²é¡Œ2
+ * æ—¥ä»˜ : 2017-11-14
+ * @author BP16001 è¶³ç«‹è³¢äºº
+ * @version 1.0
  */
 public class BreadthFirstSearch {
 
 	/**
-	 * w’è•¶š—ñ‚ğŠÜ‚Şƒtƒ@ƒCƒ‹–¼‚Ì’Tõ w’èƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚ğÄ‹A“I‚É‘–¸‚·‚é
-	 * 
+	 * æŒ‡å®šæ–‡å­—åˆ—ã‚’å«ã‚€ãƒ•ã‚¡ã‚¤ãƒ«åã®æ¢ç´¢ æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä»¥ä¸‹ã‚’å¹…å„ªå…ˆæ¢ç´¢ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã«å¾“ã„å†å¸°çš„ã«èµ°æŸ»ã™ã‚‹
+	 *
 	 * @param name
-	 *            w’è•¶š—ñ
+	 *            æŒ‡å®šæ–‡å­—åˆ—
 	 * @param entryPoint
-	 *            w’èƒfƒBƒŒƒNƒgƒŠ
-	 * @return •¶š—ñ‚ğŠÜ‚Şƒtƒ@ƒCƒ‹–¼‚ÌƒŠƒXƒg
+	 *            æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	 * @return æŒ‡å®šæ–‡å­—åˆ—ã‚’å«ã‚€ãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒªã‚¹ãƒˆ
 	 */
 	public static ArrayList<File> searchFile(String name, File entryPoint) {
-		// éŒ¾•”
+		// å®£è¨€éƒ¨
 		File currentDir = entryPoint;
-		// ƒtƒ@ƒCƒ‹ƒŠƒXƒg
+		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆ
 		ArrayList<File> fileList = new ArrayList<File>();
-		// ƒfƒBƒŒƒNƒgƒŠƒLƒ…[
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚­ãƒ¥ãƒ¼
 		ArrayDeque<File> queue = new ArrayDeque<File>();
 
-		// ƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒg‚Ìİ’è
+		// ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆã®è¨­å®š
 		queue.add(entryPoint);
 
-		// ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Ìİ’è
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®è¨­å®š
 		while ((currentDir = queue.poll()) != null) {
 
-			// ƒfƒBƒŒƒNƒgƒŠ‚Ìq—v‘f‚É‘Î‚µ‚Ä
+			// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å­è¦ç´ ã«å¯¾ã—ã¦
 			for (File f : currentDir.listFiles()) {
 
 				if (f.isDirectory()) {
 					queue.add(f);
 
 				} else {
-					// w’è‚µ‚½–¼‘O‚ğŠÜ‚Ş‚©”»’è
-					if (f.getName().contains(name)) {
+					// æŒ‡å®šã—ãŸåå‰ã§çµ‚ã‚ã‚‹ã‹åˆ¤å®š
+					if (f.getName().endsWith(name)) {
 						fileList.add(f);
 
 					} else {
