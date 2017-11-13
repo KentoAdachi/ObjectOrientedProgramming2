@@ -68,7 +68,7 @@ public class CodeProfiler {
 		FileWriter writer = new FileWriter(exportFile);
 
 		ArrayList<File> fileList;
-		fileList = BreadthFirstSearch.searchFile("java", new File(filePath));
+		fileList = BreadthFirstSearch.searchFile(".java", new File(filePath));
 		for (File file : fileList) {
 			JavaReader reader = new JavaReader(file);
 			for (String className : reader.classNameList) {

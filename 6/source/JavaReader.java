@@ -6,15 +6,13 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 /** Javaファイルの文法解析を行うクラス
  * Javaファイルを読み取り,文(statement)の分類を行うための機能をサポートする。
  *
  * 課題番号 : 課題2
  * 日付 : 2017-11-14
  * @author BP16001 足立賢人
- * @version 1.0 コメントアウトした宣言に未対応
+ * @version 1.2 コメントアウトした宣言に対応,文字列に対応
  */
 public class JavaReader {
 
@@ -63,25 +61,36 @@ public class JavaReader {
 		String classNameImportedReg = "import\\s+([a-zA-Z0-9\\.]+)";
 		String packageNameListReg = "package\\s+([a-zA-Z0-9]+)";
 
-		matchPatternAddList(classNameReg, statement, getClassNameList());
-		matchPatternAddList(classNameImportedReg, statement, getClassNameListImported());
-		matchPatternAddList(packageNameListReg, statement, getPackageNameList());
+		Matcher matcher = matchPattern(classNameReg, statement);
+		if (matcher.find()) {
+			//			System.out.println("Name : " + matcher.group(1));
+			getClassNameList().add(matcher.group(1));
+		}
+
+		matcher = matchPattern(classNameImportedReg, statement);
+		if (matcher.find()) {
+			//			System.out.println("Name : " + matcher.group(1));
+			getClassNameListImported().add(matcher.group(1));
+		}
+
+		matcher = matchPattern(packageNameListReg, statement);
+		if (matcher.find()) {
+			//			System.out.println("Name : " + matcher.group(1));
+			getPackageNameList().add(matcher.group(1));
+		}
 
 	}
 
-
-	/**パターンマッチングを行い、マッチングに成功した入力をリストに追加する
-	 * @param regex 正規表現パターン
+	/**パターンマッチングを行うメソッド
+	 * @param regex 正規表現
 	 * @param input 入力
-	 * @param list 入力先リスト
+	 * @return matcher
 	 */
-	void matchPatternAddList(String regex, String input, ArrayList<String> list) {
+	Matcher matchPattern(String regex, String input) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
-		if (matcher.find()) {
-			//			System.out.println("Name : " + matcher.group(1));
-			list.add(matcher.group(1));
-		}
+
+		return matcher;
 	}
 
 	/**javaReaderの終了処理を行う
@@ -102,22 +111,80 @@ public class JavaReader {
 	 */
 	String readStatement() throws IOException {
 
-		//		頭の空白文字を無視して読み込む
 		//		読み込んだものをためる
-		int c;
+		int c[] = new int[2];
+
+
+		//0 = ロックなし
+		//1 = 一行コメント
+		//2 = 複数行コメント
+		//3 = 文字列
+		int lockNumber = 0;
 		StringBuilder stringBuilder = new StringBuilder();
 
-		//最初の空白や水平タブ,コメントも無視したい(正規化)
+		while ((c[0] = lineNumberReader.read()) != -1) {
 
-		while ((c = lineNumberReader.read()) != -1) {
-			//System.out.print((char)c);
+			switch (lockNumber) {
+			case 0:
+				if (c[0] == '/') {
+					if (c[1] == '/') {
+						lockNumber = 1;
+//						System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+					}
+				}  if (c[0] == '*') {
+					if (c[1] == '/') {
+						lockNumber = 2;
+						c[0] = ' ';
+//						System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+					}
+				}  if (c[0] == '"') {
+					lockNumber = 3;
+//					System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+				}
+				if (lockNumber == 0) {
+					stringBuilder.append((char) c[0]);
+//					System.out.print((char)c[0]);
+				}
+				if ((char) c[0] == ';' || (char) c[0] == '{' || (char) c[0] == '}') {
+//					System.out.println(stringBuilder.toString());
+					return stringBuilder.toString();
 
-			stringBuilder.append((char) c);
+				}
+				break;
 
-			if ((char) c == ';' || (char) c == '{' || (char) c == '}') {
-				return stringBuilder.toString();
+			case 1:
+
+				if (c[0] == '\n') {
+					lockNumber = 0;
+					stringBuilder.deleteCharAt(stringBuilder.length()-1);
+					stringBuilder.append(" ");
+//					System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+				}
+
+				break;
+
+			case 2:
+
+				if (c[0] == '/') {
+					if (c[1] == '*') {
+						lockNumber = 0;
+						stringBuilder.deleteCharAt(stringBuilder.length()-1);
+						stringBuilder.append(" ");
+//						System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+					}
+				}
+				break;
+
+			case 3:
+				if (c[0] == '"') {
+					lockNumber = 0;
+//					System.out.println(lineNumberReader.getLineNumber()+" "+lockNumber);
+				}
+				break;
 			}
 
+
+			c[1] = c[0];
 		}
 
 		return null;
