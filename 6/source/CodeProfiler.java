@@ -61,6 +61,7 @@ public class CodeProfiler {
 		if (filePath.endsWith("/")) {
 			pathName = filePath + fileName;
 		} else {
+			//ファイルパスの最後のスラッシュは省略されがちなので対応する
 			pathName = filePath + "/" + fileName;
 		}
 
@@ -69,21 +70,23 @@ public class CodeProfiler {
 
 		ArrayList<File> fileList;
 		fileList = BreadthFirstSearch.searchFile(".java", new File(filePath));
+		
+		//ファイルそれぞれのJavaReaderを生成し,クラス名やパッケージ名のリストをCSV形式で出力する
 		for (File file : fileList) {
 			JavaReader reader = new JavaReader(file);
 			for (String className : reader.classNameList) {
 				writer.write(reader.getAbsolutePath() + "," + reader.getName()
-						+ "," + reader.getLineNumber() + ",Class," + className
+						+ "," + (reader.getLineNumber()+1) + ",Class," + className
 						+ "\n");
 			}
 			for (String classNameImported : reader.classNameListImported) {
 				writer.write(reader.getAbsolutePath() + "," + reader.getName()
-						+ "," + reader.getLineNumber() + ",Import,"
+						+ "," + (reader.getLineNumber()+1) + ",Import,"
 						+ classNameImported + "\n");
 			}
 			for (String packageName : reader.packageNameList) {
 				writer.write(reader.getAbsolutePath() + "," + reader.getName()
-						+ "," + reader.getLineNumber() + ",Package,"
+						+ "," + (reader.getLineNumber()+1) + ",Package,"
 						+ packageName + "\n");
 			}
 

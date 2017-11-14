@@ -22,7 +22,7 @@ public class BreadthFirstSearch {
 	 * @return 指定文字列を含むファイル名のリスト
 	 */
 	public static ArrayList<File> searchFile(String name, File entryPoint) {
-		// 宣言部
+
 		File currentDir = entryPoint;
 		// ファイルリスト
 		ArrayList<File> fileList = new ArrayList<File>();
